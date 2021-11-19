@@ -1,0 +1,35 @@
+<h2 *ngIf="loading">Loading...</h2>
+<h2 *ngIf="error">There was and error. Please try again later.</h2>
+
+<div *ngIf="!loading && !error" class="poke-container">
+  <button routerLink="/">Back</button>
+  <img class="poke-image" [src]="pokemon?.sprites.other['official-artwork'].front_default ">
+  <h2 class="poke-title">
+    {{ pokemon?.name }}
+  </h2>
+  <div class="poke-attributes dl-tiles">
+    <dl>
+      <dt>Experience</dt>
+      <dd>{{pokemon?.base_experience}}</dd>
+    </dl>
+    <dl>
+      <dt>Height</dt>
+      <dd>{{pokemon?.height}}</dd>
+    </dl>
+    <dl>
+      <dt>Weight</dt>
+      <dd>{{pokemon?.weight}}</dd>
+    </dl>
+  </div>
+  <h3>Stats</h3>
+  <div class="poke-stats dl-tiles">
+    <dl *ngFor="let stat of pokemon?.stats">
+      <dt>{{stat.stat.name}}</dt>
+      <dd>{{stat.base_stat}}</dd>
+    </dl>
+  </div>
+  <h3>Moves</h3>
+  <div class="poke-moves">
+    <span *ngFor="let move of pokemon?.moves">{{move.move.name}}</span>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<h2>Pokemon !!!</h2>
+<p>
+  <input class="search-input" type="text" placeholder="find a pokemon" [(ngModel)]="name" > <button class="search-button" (click)="search()" [disabled]="!name">Search</button>
+</p>
+<p>
+  <ng-container *ngIf="showNavigateToPokemon.show">
+    Found <span class="poke-name"><strong>{{showNavigateToPokemon.name}}</strong></span>
+    <button class="details-button" [routerLink]="[showNavigateToPokemon.link]">Details</button>
+  </ng-container>
+</p>
+
+<app-pokemon-table></app-pokemon-table>

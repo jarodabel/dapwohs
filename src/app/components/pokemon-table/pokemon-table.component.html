@@ -1,0 +1,22 @@
+<button class="prev-button" (click)="previous()">Previous</button>
+<span *ngIf="currentRange$ | async">{{currentRange$ | async}} / {{count$ | async}}</span>
+<button class="next-button" (click)="next()">Next</button>
+<div class="pokemon-container">
+  <div *ngFor="let p of pokemon$ | async" class="poke-tile" [routerLink]="[p.link]">
+    <strong>{{p.name}}</strong>
+    <div class="poke-tile-checkboxes">
+      <!-- <img class="poke-ball" [class.is-caught]="p.caught" src="../../../assets/pokeball.png" title="Pokemon I've caught"
+        (click)="addToPokemonCaught($event, p.id)" />
+      <img class="wish-list" [class.is-wishlist]="p.wishList" src="../../../assets/wishlist.png"
+        title="Pokemon Wishlist" (click)="addToPokemonWishList($event, p.id)" /> -->
+      <div (click)="$event.stopPropagation();">
+        <input type="checkbox" [checked]="p.caught" (change)="addToPokemonCaught($event, p.id)" name="caught" />
+        <label for="caught">Caught</label>
+      </div>
+      <div (click)="$event.stopPropagation();">
+        <input type="checkbox" [checked]="p.wishList" (change)="addToPokemonWishList($event, p.id)" name="wishList" />
+        <label for="wishList">Wishlist</label>
+      </div>
+    </div>
+  </div>
+</div>
